@@ -14,35 +14,66 @@
     <!--Separator-->
     <q-separator class="q-my-md"/>
     <!--Notifications-->
-    <q-scroll-area :thumb-style="thumbStyle" v-if="notificationsData.length" class="relative-position"
-                   style="height: calc(100vh - 93px); width: 100%">
+    <q-scroll-area 
+      :thumb-style="thumbStyle" 
+      v-if="notificationsData.length" 
+      class="relative-position"
+      style="height: calc(100vh - 93px); width: 100%"
+    >
       <!--Notifications List-->
-      <div v-for="notification in notificationsData" :key="notification.id" @click="handlerActon(notification)"
-           :class="`item ${notification.link ? 'cursor-pointer' : ''}`">
+      <div 
+        v-for="notification in notificationsData" 
+        :key="notification.id" 
+        @click="handlerActon(notification)"
+        :class="`${notification.link ? 'cursor-pointer' : ''}`"
+        class="
+          tw-flex-col
+          tw-rounded-lg
+          tw-bg-white
+          tw-shadow-lg
+          tw-p-3.5
+          tw-mr-4
+        "
+      >
+        <section>
+          <div class="tw-flex tw-items-center tw-justify-between tw-mb-2.5">
+            <h2 class="tw-font-bold tw-text-base">{{ notification.title }}</h2>
+            <p class="tw-text-gray-400">
+              {{ $date.getHumanCalendar(notification.createdAt) }}
+            </p>
+          </div>
+          <p class="tw-text-base">{{ notification.message }}</p>
+        </section>
         <!--Content Notification-->
-        <div class="relative-position q-pl-xl">
-          <div class="row items-center q-pl-sm">
+        <!-- <div class="relative-position q-pl-xl"> -->
+          <!-- <div class="row items-center q-pl-sm"> -->
             <!--Bagde is read-->
-            <q-badge v-if="!notification.isRead" :color="notification.isImportant ? 'orange' : 'primary'"
-                     rounded floating/>
+            <!-- <q-badge 
+              v-if="!notification.isRead" 
+              :color="notification.isImportant ? 'orange' : 'primary'"
+              rounded 
+              floating
+            /> -->
             <!--Icon-->
-            <q-icon color="green" class="icon-item" :name="notification.icon"/>
+            <!-- <q-icon color="green" class="icon-item" :name="notification.icon"/> -->
             <!--Content-->
-            <div class="text-item row items-center">
+            
+
+            <!-- <div class="text-item row items-center"> -->
               <!--Message-->
-              <div class="ellipsis-3-lines q-pr-xs text-grey-8">
-                <div v-html="notification.message" ></div>
+              <!-- <div class="">
+                <p v-html="notification.message" ></p>
                 <q-tooltip :delay="1000" max-width="250px">
                   <label v-html="notification.message" ></label>
                 </q-tooltip>
-              </div>
+              </div> -->
               <!--Date-->
-              <div class="col-12 text-grey-6 text-caption">
+              <!-- <div class="col-12 text-grey-6 text-caption">
                 {{ $date.getHumanCalendar(notification.createdAt) }}
-              </div>
-            </div>
-          </div>
-        </div>
+              </div> -->
+            <!-- </div> -->
+          <!-- </div> -->
+        <!-- </div> -->
       </div>
       <!--Actions-->
       <div class="text-center q-py-md" v-if="(this.pagination.page == this.pagination.lastPage) ? false : true">
